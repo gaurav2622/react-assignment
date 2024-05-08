@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, act } from "@testing-library/react";
 import ListingComponent from "../components/listingComponent/listing";
 import * as list from "../services/getList";
 
@@ -339,10 +339,13 @@ const commonData = {
 };
 
 describe("Listing Component", () => {
-  it("render detail", () => {
-    jest.spyOn(list, "getUniversityList").mockResolvedValueOnce(commonData);
+  it("render detail", async () => {
+    jest.spyOn(list, "getUniversityList").mockResolvedValue(commonData);
     const { getByTestId } = render(<ListingComponent />);
     const wrapper = getByTestId("wrapper");
+    await act(() => {
+      Promise.resolve();
+    });
 
     expect(wrapper).toBeTruthy();
   });
@@ -352,32 +355,47 @@ describe("Listing Component", () => {
     const wrapper = getByTestId("wrapper");
     expect(wrapper).toBeTruthy();
   });
-  it("fires onChange event for search input", () => {
+  it("fires onChange event for search input", async () => {
+    jest.spyOn(list, "getUniversityList").mockResolvedValue(commonData);
     const { getByPlaceholderText } = render(<ListingComponent />);
     const searchInput = getByPlaceholderText("Search Here....");
-    fireEvent.change(searchInput, { target: { value: "example" } });
+    await act(() => {
+      fireEvent.change(searchInput, { target: { value: "example" } });
+    });
     expect(searchInput.value).toBe("example");
   });
-  it("fires onChange event for search input", () => {
+  it("fires onChange event for search input", async () => {
+    jest.spyOn(list, "getUniversityList").mockResolvedValue(commonData);
     const { getByPlaceholderText } = render(<ListingComponent />);
     const searchInput = getByPlaceholderText("Search Here....");
-    fireEvent.change(searchInput, { target: { value: "" } });
+    await act(() => {
+      fireEvent.change(searchInput, { target: { value: "" } });
+    });
     expect(searchInput.value).toBe("");
   });
-  it("fires onChange event for filter select", () => {
+  it("fires onChange event for filter select", async () => {
+    jest.spyOn(list, "getUniversityList").mockResolvedValue(commonData);
     const { getByTestId } = render(<ListingComponent />);
     const filterSelect = getByTestId("select-wrapper");
-    fireEvent.change(filterSelect, { target: { value: "Country" } });
+    await act(async () => {
+      fireEvent.change(filterSelect, { target: { value: "Country" } });
+    });
     expect(filterSelect.value).toBe("Country");
   });
-  it("fires onChange event for filter select", () => {
+  it("fires onChange event for filter select", async () => {
+    jest.spyOn(list, "getUniversityList").mockResolvedValue(commonData);
     const { getByTestId } = render(<ListingComponent />);
     const SortSelect = getByTestId("filter-wrapper");
-    fireEvent.change(SortSelect, { target: { value: "A To Z" } });
+    await act(async () => {
+      fireEvent.change(SortSelect, { target: { value: "A To Z" } });
+    });
   });
-  it("fires onChange event for filter select", () => {
+  it("fires onChange event for filter select", async () => {
+    jest.spyOn(list, "getUniversityList").mockResolvedValue(commonData);
     const { getByTestId } = render(<ListingComponent />);
     const SortSelect = getByTestId("filter-wrapper");
-    fireEvent.change(SortSelect, { target: { value: "Z To A" } });
+    await act(async () => {
+      fireEvent.change(SortSelect, { target: { value: "Z To A" } });
+    });
   });
 });
