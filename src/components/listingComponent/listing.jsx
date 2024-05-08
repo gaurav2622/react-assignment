@@ -133,9 +133,17 @@ const ListingComponent = () => {
                   <span className="filter-title">Sort By:</span>
                 </div>
                 <div className="sort-dropdown">
-                  <select className="sort-select" onChange={handleSorting}>
-                    <option value="A To Z">A To Z</option>
-                    <option value="Z To A">Z To A</option>
+                  <select
+                    data-testid="filter-wrapper"
+                    className="sort-select"
+                    onChange={handleSorting}
+                  >
+                    <option data-testid="select-az" value="A To Z">
+                      A To Z
+                    </option>
+                    <option data-testid="select-za" value="Z To A">
+                      Z To A
+                    </option>
                   </select>
                 </div>
               </div>

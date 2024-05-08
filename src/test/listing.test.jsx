@@ -370,4 +370,14 @@ describe("Listing Component", () => {
     fireEvent.change(filterSelect, { target: { value: "Country" } });
     expect(filterSelect.value).toBe("Country");
   });
+  it("fires onChange event for filter select", () => {
+    const { getByTestId } = render(<ListingComponent />);
+    const SortSelect = getByTestId("filter-wrapper");
+    fireEvent.change(SortSelect, { target: { value: "A To Z" } });
+  });
+  it("fires onChange event for filter select", () => {
+    const { getByTestId } = render(<ListingComponent />);
+    const SortSelect = getByTestId("filter-wrapper");
+    fireEvent.change(SortSelect, { target: { value: "Z To A" } });
+  });
 });
