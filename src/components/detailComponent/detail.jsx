@@ -29,7 +29,7 @@ const DetailComponent = () => {
         <div className="detail-wrapper">
           <div className="">
             <div className="detail-heading">
-              <h2 className="listing-title">Lisitng Details</h2>
+              <h2 className="listing-title">Listing Details</h2>
             </div>
             {isDelete && (
               <div className="delete-wrapper">

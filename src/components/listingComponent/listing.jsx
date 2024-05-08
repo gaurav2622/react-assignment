@@ -24,7 +24,6 @@ const ListingComponent = () => {
     } catch {
       console.error("handle error");
       const localStorageData = JSON.parse(localStorage.getItem("uniList"));
-      console.log(localStorageData);
       if (localStorageData?.length) {
         setData(localStorageData);
         setFilteredData(localStorageData);
@@ -51,11 +50,11 @@ const ListingComponent = () => {
       let filtered = [];
       if (searchType === "Country") {
         filtered = filteredData.filter((item) =>
-          item?.country?.toLowerCase().includes(value?.toLowerCase()),
+          item?.country?.toLowerCase().includes(value?.toLowerCase())
         );
       } else {
         filtered = filteredData.filter((item) =>
-          item?.name?.toLowerCase().includes(value?.toLowerCase()),
+          item?.name?.toLowerCase().includes(value?.toLowerCase())
         );
       }
 
@@ -93,7 +92,6 @@ const ListingComponent = () => {
         return 0;
       });
     }
-    console.log(sortedData);
     setData([...sortedData]);
   };
 
@@ -104,12 +102,16 @@ const ListingComponent = () => {
   };
 
   return (
-    <div className="listing">
+    <div className="listing" data-testid="wrapper">
       <div className="container">
         <div className="listing-wrapper">
           <div className="search-wrapper">
             <div className="search-input-append">
-              <select className="filter-select" onChange={onSearchTypeChange}>
+              <select
+                data-testid="select-wrapper"
+                className="filter-select"
+                onChange={onSearchTypeChange}
+              >
                 <option>Select Search Type</option>
                 <option value="Name">Search By Name</option>
                 <option value="Country">Search By Country</option>
@@ -141,7 +143,7 @@ const ListingComponent = () => {
           </div>
 
           <div className="listing-heading">
-            <h2 className="listing-title">Lisitng</h2>
+            <h2 className="listing-title">Listing</h2>
           </div>
 
           <div className="listing-content">
@@ -152,6 +154,7 @@ const ListingComponent = () => {
                     key={uni.name}
                     className="job-list border-bottom"
                     onClick={() => handleViewDetails(uni.name)}
+                    data-testid="detail-btn"
                   >
                     <div className="job-list-content">
                       <div className="state">{uni.name}</div>
