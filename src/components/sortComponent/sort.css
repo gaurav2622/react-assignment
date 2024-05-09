@@ -1,0 +1,36 @@
+.job-filter {
+  padding: 1.875rem 0;
+}
+
+.job-filter-flex {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.filter-flex,
+.sort-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.625rem;
+}
+
+.filter-title {
+  font-size: 0.875rem;
+}
+
+.filter-select {
+  padding: 0.625rem;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  background-color: #21c87a;
+  color: #fff;
+}
+
+.sort-select {
+  padding: 0.625rem;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+}

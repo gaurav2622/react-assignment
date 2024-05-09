@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUniversityList } from "../../services/getList";
+import Search from "../searchComponent/search";
+import Sort from "../sortComponent/sort";
 import "./listing.css";
 
 const ListingComponent = () => {
@@ -105,50 +107,12 @@ const ListingComponent = () => {
     <div className="listing" data-testid="wrapper">
       <div className="container">
         <div className="listing-wrapper">
-          <div className="search-wrapper">
-            <div className="search-input-append">
-              <select
-                data-testid="select-wrapper"
-                className="filter-select"
-                onChange={onSearchTypeChange}
-              >
-                <option>Select Search Type</option>
-                <option value="Name">Search By Name</option>
-                <option value="Country">Search By Country</option>
-              </select>
-            </div>
-            <input
-              className="form-control search-wrapper-input"
-              type="text"
-              placeholder="Search Here...."
-              onChange={onInputChange}
-              value={inputValue}
-            />
-          </div>
-
-          <div className="job-filter">
-            <div className="job-filter-flex">
-              <div className="sort-flex">
-                <div>
-                  <span className="filter-title">Sort By:</span>
-                </div>
-                <div className="sort-dropdown">
-                  <select
-                    data-testid="filter-wrapper"
-                    className="sort-select"
-                    onChange={handleSorting}
-                  >
-                    <option data-testid="select-az" value="ascending">
-                      A To Z
-                    </option>
-                    <option data-testid="select-za" value="descending">
-                      Z To A
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Search
+            onInputChange={onInputChange}
+            onSearchTypeChange={onSearchTypeChange}
+            inputValue={inputValue}
+          />
+          <Sort handleSorting={handleSorting} />
 
           <div className="listing-heading">
             <h2 className="listing-title">Listing</h2>
