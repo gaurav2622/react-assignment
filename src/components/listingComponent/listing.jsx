@@ -67,7 +67,7 @@ const ListingComponent = () => {
     const sortOrder = e.target.value;
 
     let sortedData;
-    if (sortOrder === "A To Z") {
+    if (sortOrder === "ascending") {
       sortedData = filteredData.sort((a, b) => {
         const nameA = a.name.toUpperCase();
         const nameB = b.name.toUpperCase();
@@ -79,7 +79,7 @@ const ListingComponent = () => {
         }
         return 0;
       });
-    } else if (sortOrder === "Z To A") {
+    } else if (sortOrder === "descending") {
       sortedData = filteredData.sort((a, b) => {
         const nameA = a.name.toUpperCase();
         const nameB = b.name.toUpperCase();
@@ -138,10 +138,10 @@ const ListingComponent = () => {
                     className="sort-select"
                     onChange={handleSorting}
                   >
-                    <option data-testid="select-az" value="A To Z">
+                    <option data-testid="select-az" value="ascending">
                       A To Z
                     </option>
-                    <option data-testid="select-za" value="Z To A">
+                    <option data-testid="select-za" value="descending">
                       Z To A
                     </option>
                   </select>
