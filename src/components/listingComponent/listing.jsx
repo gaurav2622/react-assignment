@@ -103,7 +103,6 @@ const ListingComponent = () => {
       });
     }
     setFilteredData([...sortedData]);
-    dispatch(fetchUniversitiesSuccess([...sortedData]));
   };
 
   // on Search Input
@@ -129,7 +128,7 @@ const ListingComponent = () => {
 
           <div className="listing-content">
             {!isDataFound ? (
-              data?.map((uni) => {
+              filteredData?.map((uni) => {
                 return (
                   <div
                     key={uni.name}
