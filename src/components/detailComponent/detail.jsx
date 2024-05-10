@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import DeleteSuccessComponent from "../deleteSuccessComponent/delete";
 import "./detail.css";
 
 const DetailComponent = () => {
-  const [data, setData] = useState({});
+  const list = useSelector((state) => state.universitiesReducer);
+  const [searchParams] = useSearchParams();
+  const name = searchParams?.get("name");
+
+  const data = list?.data?.find((obj) => {
+    return obj?.domains?.[0] === name;
+  });
+
   const [isDelete, setIsDelete] = useState(false);
   const navigate = useNavigate();
-  useEffect(() => {
-    const universityName = localStorage.getItem("details");
-    setData(JSON.parse(universityName));
-  }, []);
 
   //   on click delete
   const handleDelete = () => {
@@ -39,7 +44,7 @@ const DetailComponent = () => {
           >
             <div className="detail-list-content">
               <div className="state">
-                {data?.name}, {data?.country}{" "}
+                {data?.name}, {data?.country}
               </div>
               <div className="detail-listing">
                 <div className="detail-header">

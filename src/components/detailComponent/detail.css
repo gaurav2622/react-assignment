@@ -89,6 +89,7 @@
 .btn-delete {
   background-color: #dc3545;
   color: #fff;
+  border-color: #dc3545;
 }
 
 .detail-content {

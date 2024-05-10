@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {
+  fetchUniversitiesRequest,
+  fetchUniversitiesSuccess,
+  fetchUniversitiesFailure,
+  storeUniversityDetails,
+} from "../../store/actions";
 import { getUniversityList } from "../../services/getList";
 import Search from "../searchComponent/search";
 import Sort from "../sortComponent/sort";
 import "./listing.css";
 
 const ListingComponent = () => {
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const list = useSelector((state) => state.universitiesReducer);
+  const { data, loading, error } = list;
   const [inputValue, setInputValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [isDataFound, setIsDataFound] = useState(false);
@@ -18,28 +27,28 @@ const ListingComponent = () => {
   }, []);
 
   const fetchData = async () => {
+    //setLoading = true
     try {
       const res = await getUniversityList();
-      setData(res.data);
+      dispatch(fetchUniversitiesSuccess(res.data));
       setFilteredData(res.data);
-      localStorage.setItem("uniList", JSON.stringify(res.data));
     } catch {
       console.error("handle error");
-      const localStorageData = JSON.parse(localStorage.getItem("uniList"));
-      if (localStorageData?.length) {
-        setData(localStorageData);
-        setFilteredData(localStorageData);
-      } else {
-        setIsDataFound(true);
-      }
+      dispatch(fetchUniversitiesFailure(error));
+      setIsDataFound(true);
+    } finally {
+      //setLoading = false
     }
   };
 
   // on click navigate detail page
   const handleViewDetails = (name) => {
     const uniDetails = data.find((d) => d.name === name);
-    localStorage.setItem("details", JSON.stringify(uniDetails));
-    navigate("/details");
+    dispatch(storeUniversityDetails(uniDetails));
+    const queryParams = new URLSearchParams({
+      name: uniDetails?.domains[0],
+    }).toString();
+    navigate(`/details/?${queryParams}`);
   };
 
   // on filter input search
@@ -47,20 +56,19 @@ const ListingComponent = () => {
     const value = e.target.value;
     setInputValue(value);
     if (!value) {
-      setData(data);
+      setFilteredData(data);
     } else {
       let filtered = [];
       if (searchType === "Country") {
-        filtered = filteredData.filter((item) =>
+        filtered = data.filter((item) =>
           item?.country?.toLowerCase().includes(value?.toLowerCase())
         );
       } else {
-        filtered = filteredData.filter((item) =>
+        filtered = data.filter((item) =>
           item?.name?.toLowerCase().includes(value?.toLowerCase())
         );
       }
-
-      setData(filtered);
+      setFilteredData(filtered);
     }
   };
 
@@ -94,7 +102,8 @@ const ListingComponent = () => {
         return 0;
       });
     }
-    setData([...sortedData]);
+    setFilteredData([...sortedData]);
+    dispatch(fetchUniversitiesSuccess([...sortedData]));
   };
 
   // on Search Input
