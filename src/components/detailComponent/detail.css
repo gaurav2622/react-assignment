@@ -13,21 +13,22 @@
 .hinge {
   animation: zoomOutDown 0.75s both;
 }
-.container {
-  max-width: 85rem;
+
+.detail {
+  margin-top: 4.3125rem;
+}
+.detail-container {
+  max-width: 71.25rem;
   margin: 0 auto;
 }
+
 .detail-wrapper {
-  max-width: 61.25rem;
-  margin: 3.75rem auto;
-  padding: 2.5rem;
-  background: #fff;
-  border: 1px solid #eeeeee;
+  padding-top: 3.75rem;
 }
 
 @media (max-width: 768px) {
   .detail-wrapper {
-    padding: 15px;
+    padding: 0.9375rem;
   }
 }
 
@@ -36,14 +37,10 @@
   border-bottom: 0.0625rem solid transparent;
 }
 
-.border-bottom {
-  border-bottom-color: #21c87a;
-}
-
 .state {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .job-filter {
@@ -81,6 +78,7 @@
   border-radius: 0.25rem;
   border: 1px solid #21c87a;
   cursor: pointer;
+  font-family: inherit;
 }
 
 .btn-home {

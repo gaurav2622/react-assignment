@@ -1,12 +1,16 @@
 .header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
   background-color: #fff;
   padding: 0.9375rem 1.875rem;
-  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0rem 0.1875rem 0.625rem 0rem rgba(40, 48, 57, 0.08);
   color: #21c87a;
 }
 
-.container {
-  max-width: 85rem;
+.header-container {
+  max-width: 90%;
   margin: 0 auto;
 }
 

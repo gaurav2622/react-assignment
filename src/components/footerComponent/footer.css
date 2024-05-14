@@ -9,7 +9,7 @@
   z-index: 999;
 }
 
-.container {
-  max-width: 85rem;
+.footer-container {
+  max-width: 90%;
   margin: 0 auto;
 }

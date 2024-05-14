@@ -72,6 +72,20 @@ const ListingComponent = () => {
     }
   };
 
+  // Highlight text
+  const getHighlightedText = (text, highlight) => {
+    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+    return parts.map((part, index) =>
+      part.toLowerCase() === highlight.toLowerCase() ? (
+        <span key={index} className="highlight">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   // Sorting
   const handleSorting = (e) => {
     const sortOrder = e.target.value;
@@ -113,15 +127,22 @@ const ListingComponent = () => {
 
   return (
     <div className="listing" data-testid="wrapper">
-      <div className="container">
-        <div className="listing-wrapper">
+      <section className="search-wrapper">
+        <div className="container">
           <Search
             onInputChange={onInputChange}
             onSearchTypeChange={onSearchTypeChange}
             inputValue={inputValue}
           />
+        </div>
+      </section>
+      <section className="search-list-wrapper">
+        <div className="container">
           <Sort handleSorting={handleSorting} />
-
+        </div>
+      </section>
+      <section className="listing-container">
+        <div className="listing-wrapper">
           <div className="listing-heading">
             <h2 className="listing-title">Listing</h2>
           </div>
@@ -137,8 +158,12 @@ const ListingComponent = () => {
                     data-testid="detail-btn"
                   >
                     <div className="job-list-content">
-                      <div className="state">{uni.name}</div>
-                      <div className="name">{uni.country}</div>
+                      <div className="state">
+                        {getHighlightedText(uni.name, inputValue)}
+                      </div>
+                      <div className="name">
+                        {getHighlightedText(uni.country, inputValue)}
+                      </div>
                     </div>
                   </div>
                 );
@@ -148,7 +173,7 @@ const ListingComponent = () => {
             )}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

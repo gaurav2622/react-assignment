@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import "./App.css";
 import Header from "./components/headerComponent/header";
 import ListingComponent from "./components/listingComponent/listing";
 import DetailComponent from "./components/detailComponent/detail";
 import Footer from "./components/footerComponent/footer";
+import "./App.css";
 
 function App() {
   return (

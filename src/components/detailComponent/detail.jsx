@@ -31,7 +31,7 @@ const DetailComponent = () => {
   };
   return (
     <div className="detail">
-      <div className="container">
+      <div className="detail-container">
         <div className="detail-wrapper">
           <div className="detail-heading">
             <h2 className="listing-title">Listing Details</h2>

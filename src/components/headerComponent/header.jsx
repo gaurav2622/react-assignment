@@ -4,7 +4,7 @@ import "./header.css";
 const Header = () => {
   return (
     <div className="header">
-      <div className="container">
+      <div className="header-container">
         <div className="d-flex">
           <div className="logo">LOGO</div>
         </div>
