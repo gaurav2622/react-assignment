@@ -24,7 +24,7 @@
 .filter-select {
   padding: 0.625rem;
   border: 1px solid #d1d1d1;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   background-color: #21c87a;
   color: #fff;
 }
@@ -32,5 +32,5 @@
 .sort-select {
   padding: 0.625rem;
   border: 1px solid #d1d1d1;
-  border-radius: 5px;
+  border-radius: 0;
 }

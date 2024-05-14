@@ -22,7 +22,7 @@ const DetailComponent = () => {
     setTimeout(() => {
       localStorage.clear();
       setIsDelete(true);
-    }, 100);
+    }, 300);
   };
 
   //   on click go to homepge

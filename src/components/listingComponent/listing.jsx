@@ -20,6 +20,7 @@ const ListingComponent = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [isDataFound, setIsDataFound] = useState(false);
   const [searchType, setSearchType] = useState("");
+  const [visibleCount, setVisibleCount] = useState(5);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -125,6 +126,10 @@ const ListingComponent = () => {
     setSearchType(value);
   };
 
+  const handleShowMore = () => {
+    setVisibleCount((prevCount) => prevCount + 5);
+  };
+
   return (
     <div className="listing" data-testid="wrapper">
       <section className="search-wrapper">
@@ -149,7 +154,7 @@ const ListingComponent = () => {
 
           <div className="listing-content">
             {!isDataFound ? (
-              filteredData?.map((uni) => {
+              filteredData.slice(0, visibleCount).map((uni) => {
                 return (
                   <div
                     key={uni.name}
@@ -172,6 +177,13 @@ const ListingComponent = () => {
               <div className="error-msg">No Data Found!!!</div>
             )}
           </div>
+          {visibleCount < filteredData.length && (
+            <div className="show-wrapper">
+              <button className="show-more-btn" onClick={handleShowMore}>
+                Show More
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </div>
