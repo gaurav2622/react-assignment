@@ -64,6 +64,20 @@ const ListingComponent = () => {
     }
   };
 
+  // Highlight text
+  const getHighlightedText = (text, highlight) => {
+    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+    return parts.map((part, index) =>
+      part.toLowerCase() === highlight.toLowerCase() ? (
+        <span key={index} className="highlight">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   // Sorting
   const handleSorting = (e) => {
     const sortOrder = e.target.value;
@@ -129,8 +143,13 @@ const ListingComponent = () => {
                     data-testid="detail-btn"
                   >
                     <div className="job-list-content">
-                      <div className="state">{uni.name}</div>
-                      <div className="name">{uni.country}</div>
+                      <div className="state">
+                        {getHighlightedText(uni.name, inputValue)}
+                      </div>
+
+                      <div className="name">
+                        {getHighlightedText(uni.country, inputValue)}
+                      </div>
                     </div>
                   </div>
                 );
