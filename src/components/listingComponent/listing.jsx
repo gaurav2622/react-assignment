@@ -6,7 +6,7 @@ import Sort from "../sortComponent/sort";
 import "./listing.css";
 
 const ListingComponent = () => {
-  const { data, setData, filteredData, setFilteredData, isDataFound } =
+  const { data, setData, filteredData, isDataFound } =
     useContext(UniversityContext);
   const [inputValue, setInputValue] = useState("");
   const [searchType, setSearchType] = useState("");

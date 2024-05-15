@@ -7,11 +7,6 @@ export const UniversityProvider = ({ children }) => {
   const [data, setData] = useState();
   const [filteredData, setFilteredData] = useState([]);
   const [isDataFound, setIsDataFound] = useState(false);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     try {
       const res = await getUniversityList();
@@ -22,6 +17,10 @@ export const UniversityProvider = ({ children }) => {
       setIsDataFound(true);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <UniversityContext.Provider
       value={{ data, setData, filteredData, setFilteredData, isDataFound }}
