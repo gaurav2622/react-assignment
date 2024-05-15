@@ -1,45 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUniversityList } from "../../services/getList";
+import { UniversityContext } from "../../context/UniversityContext";
 import Search from "../searchComponent/search";
 import Sort from "../sortComponent/sort";
 import "./listing.css";
 
 const ListingComponent = () => {
-  const [data, setData] = useState([]);
+  const { data, setData, filteredData, setFilteredData, isDataFound } =
+    useContext(UniversityContext);
   const [inputValue, setInputValue] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
-  const [isDataFound, setIsDataFound] = useState(false);
   const [searchType, setSearchType] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const res = await getUniversityList();
-      setData(res.data);
-      setFilteredData(res.data);
-      localStorage.setItem("uniList", JSON.stringify(res.data));
-    } catch {
-      console.error("handle error");
-      const localStorageData = JSON.parse(localStorage.getItem("uniList"));
-      if (localStorageData?.length) {
-        setData(localStorageData);
-        setFilteredData(localStorageData);
-      } else {
-        setIsDataFound(true);
-      }
-    }
-  };
 
   // on click navigate detail page
   const handleViewDetails = (name) => {
     const uniDetails = data.find((d) => d.name === name);
-    localStorage.setItem("details", JSON.stringify(uniDetails));
-    navigate("/details");
+    navigate("/details", { state: { details: uniDetails } });
   };
 
   // on filter input search
@@ -47,7 +23,7 @@ const ListingComponent = () => {
     const value = e.target.value;
     setInputValue(value);
     if (!value) {
-      setData(data);
+      setData(filteredData);
     } else {
       let filtered = [];
       if (searchType === "Country") {

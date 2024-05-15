@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UniversityContext } from "../../context/UniversityContext";
 import DeleteSuccessComponent from "../deleteSuccessComponent/delete";
 import "./detail.css";
 
 const DetailComponent = () => {
-  const [data, setData] = useState({});
-  const [isDelete, setIsDelete] = useState(false);
+  const { data, isDelete, handleDelete } = useContext(UniversityContext);
   const navigate = useNavigate();
-  useEffect(() => {
-    const universityName = localStorage.getItem("details");
-    setData(JSON.parse(universityName));
-  }, []);
-
-  //   on click delete
-  const handleDelete = () => {
-    setTimeout(() => {
-      localStorage.clear();
-      setIsDelete(true);
-    }, 100);
-  };
-
   //   on click go to homepge
   const handleGoToHome = () => {
     navigate("/");
