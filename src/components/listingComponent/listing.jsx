@@ -20,57 +20,33 @@ const ListingComponent = () => {
 
   // on filter input search
   const onInputChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     setInputValue(value);
+
     if (!value) {
       setData(filteredData);
-    } else {
-      let filtered = [];
-      if (searchType === "Country") {
-        filtered = filteredData.filter((item) =>
-          item?.country?.toLowerCase().includes(value?.toLowerCase())
-        );
-      } else {
-        filtered = filteredData.filter((item) =>
-          item?.name?.toLowerCase().includes(value?.toLowerCase())
-        );
-      }
-
-      setData(filtered);
+      return;
     }
+
+    const key = searchType === "Country" ? "country" : "name";
+    const filtered = filteredData.filter((item) =>
+      item[key]?.toLowerCase().includes(value)
+    );
+
+    setData(filtered);
   };
 
-  // Sorting
   const handleSorting = (e) => {
     const sortOrder = e.target.value;
+    const sortedData = [...filteredData].sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) return sortOrder === "ascending" ? -1 : 1;
+      if (nameA > nameB) return sortOrder === "ascending" ? 1 : -1;
+      return 0;
+    });
 
-    let sortedData;
-    if (sortOrder === "ascending") {
-      sortedData = filteredData.sort((a, b) => {
-        const nameA = a.name.toUpperCase();
-        const nameB = b.name.toUpperCase();
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-        return 0;
-      });
-    } else if (sortOrder === "descending") {
-      sortedData = filteredData.sort((a, b) => {
-        const nameA = a.name.toUpperCase();
-        const nameB = b.name.toUpperCase();
-        if (nameA > nameB) {
-          return -1;
-        }
-        if (nameA < nameB) {
-          return 1;
-        }
-        return 0;
-      });
-    }
-    setData([...sortedData]);
+    setData(sortedData);
   };
 
   // on Search Input
