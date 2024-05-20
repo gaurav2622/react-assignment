@@ -1,5 +1,5 @@
 import React from "react";
-import "./sort.css";
+import "./sort.scss";
 
 const SortComponent = ({ handleSorting }) => {
   return (

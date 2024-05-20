@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
 import Header from "./components/headerComponent/header";
 import ListingComponent from "./components/listingComponent/listing";
 import DetailComponent from "./components/detailComponent/detail";
 import Footer from "./components/footerComponent/footer";
+import "../src/styles/global.scss";
 
 function App() {
   return (
