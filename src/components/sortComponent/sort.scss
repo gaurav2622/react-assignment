@@ -1,3 +1,5 @@
+@import "../../styles/variable.scss";
+
 .job-filter {
   padding: 1.875rem 0;
 }
@@ -23,14 +25,14 @@
 
 .filter-select {
   padding: 0.625rem;
-  border: 1px solid #d1d1d1;
+  border: 1px solid $gray;
   border-radius: 5px;
-  background-color: #21c87a;
-  color: #fff;
+  background-color: $primaryColor;
+  color: $white;
 }
 
 .sort-select {
   padding: 0.625rem;
-  border: 1px solid #d1d1d1;
+  border: 1px solid $gray;
   border-radius: 5px;
 }

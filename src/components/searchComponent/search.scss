@@ -1,3 +1,5 @@
+@import "../../styles/variable.scss";
+
 .search-wrapper {
   display: flex;
   margin-bottom: 1.25rem;
@@ -7,7 +9,7 @@
   border-radius: 0;
   width: calc(100% - 1.875rem);
   padding: 0.9375rem;
-  border: 1px solid #d1d1d1;
+  border: 1px solid $gray;
   font-size: 1.125rem;
 }
 
@@ -30,26 +32,26 @@
 .btn-search {
   display: inline-block;
   font-weight: 400;
-  color: #fff;
+  color: $white;
   text-align: center;
   vertical-align: middle;
-  background-color: #21c87a;
+  background-color: $primaryColor;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
-  border: 1px solid #21c87a;
+  border: 0.0625rem solid $primaryColor;
   cursor: pointer;
 }
 
 .search-wrapper-input::-webkit-input-placeholder {
-  color: #21c87a;
+  color: $primaryColor;
   font-weight: 400;
   font-style: italic;
 }
 
 .search-wrapper-input:focus {
   outline: 0 none;
-  border: 1px solid #d1d1d1;
-  border-color: #21c87a;
+  border: 0.0625rem solid $gray;
+  border-color: $primaryColor;
 }

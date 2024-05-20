@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getUniversityList } from "../../services/getList";
 import Search from "../searchComponent/search";
 import Sort from "../sortComponent/sort";
-import "./listing.css";
+import "./listing.scss";
 
 const ListingComponent = () => {
   const [data, setData] = useState([]);

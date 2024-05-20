@@ -1,8 +1,10 @@
+@import "../../styles/variable.scss";
+
 .container {
   max-width: 85rem;
   margin: 0 auto;
 }
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .container {
     margin: 0 0.9375rem;
   }
@@ -11,13 +13,13 @@
   max-width: 61.25rem;
   margin: 3.75rem auto;
   padding: 2.5rem;
-  background: #fff;
-  border: 1px solid #eeeeee;
+  background: $white;
+  border: 0.0625rem solid $gray;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .listing-wrapper {
-    padding: 15px;
+    padding: 0.9375rem;
   }
 }
 
@@ -38,8 +40,8 @@
 }
 
 .job-list:hover {
-  -webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
-  box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
+  -webkit-box-shadow: 0rem 0rem 2.125rem 0.25rem rgba(33, 37, 41, 0.06);
+  box-shadow: 0rem 0rem 2.125rem 0.25rem rgba(33, 37, 41, 0.06);
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   -webkit-transform: scale(1.01);
@@ -47,7 +49,7 @@
 }
 
 .border-bottom {
-  border-bottom-color: #21c87a;
+  border-bottom-color: $primaryColor;
 }
 
 .state {
@@ -58,7 +60,7 @@
 .error-msg {
   font-size: 1.75rem;
   padding: 1.5rem 1.25rem;
-  background: #ffffff;
+  background: $white;
   height: 100%;
   position: relative;
   border-bottom: 0.0625rem solid transparent;
@@ -66,10 +68,10 @@
 }
 
 .listing-title {
-  font-size: 24px;
-  border-left: 4px solid #21c87a;
+  font-size: 1.5rem;
+  border-left: 0.25rem solid $primaryColor;
   padding: 0.625rem;
   margin-bottom: 0.9375rem;
-  background-color: #86eabb;
-  color: #000;
+  background-color: $lightgreencolor;
+  color: $black;
 }

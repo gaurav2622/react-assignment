@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteSuccessComponent from "../deleteSuccessComponent/delete";
-import "./detail.css";
+import "./detail.scss";
 
 const DetailComponent = () => {
   const [data, setData] = useState({});

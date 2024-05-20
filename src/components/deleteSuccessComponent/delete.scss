@@ -1,8 +1,10 @@
+@import "../../styles/variable.scss";
+
 .delete-wrapper {
   text-align: center;
 }
 
 .btn-delete {
-  background-color: #dc3545;
+  background-color: $danger;
   border: 0 none;
 }

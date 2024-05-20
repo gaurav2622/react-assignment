@@ -1,5 +1,5 @@
 import React from "react";
-import "./delete.css";
+import "./delete.scss";
 
 const DeleteSuccessComponent = ({ handleGoToHome }) => {
   return (
