@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Card, Col, Row, Skeleton } from "antd";
 import { useNavigate } from "react-router-dom";
 import { getUniversityList } from "../../services/getList";
 import Search from "../searchComponent/search";
@@ -10,6 +11,7 @@ const ListingComponent = () => {
   const [inputValue, setInputValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [isDataFound, setIsDataFound] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchType, setSearchType] = useState("");
   const navigate = useNavigate();
 
@@ -23,14 +25,17 @@ const ListingComponent = () => {
       setData(res.data);
       setFilteredData(res.data);
       localStorage.setItem("uniList", JSON.stringify(res.data));
+      setIsLoading(false);
     } catch {
       console.error("handle error");
       const localStorageData = JSON.parse(localStorage.getItem("uniList"));
       if (localStorageData?.length) {
         setData(localStorageData);
         setFilteredData(localStorageData);
+        setIsLoading(false);
       } else {
         setIsDataFound(true);
+        setIsLoading(false);
       }
     }
   };
@@ -65,8 +70,8 @@ const ListingComponent = () => {
   };
 
   // Sorting
-  const handleSorting = (e) => {
-    const sortOrder = e.target.value;
+  const handleSorting = (value) => {
+    const sortOrder = value;
 
     let sortedData;
     if (sortOrder === "ascending") {
@@ -98,8 +103,7 @@ const ListingComponent = () => {
   };
 
   // on Search Input
-  const onSearchTypeChange = (e) => {
-    let value = e.target.value;
+  const onSearchTypeChange = (value) => {
     setSearchType(value);
   };
 
@@ -119,25 +123,43 @@ const ListingComponent = () => {
           </div>
 
           <div className="listing-content">
-            {!isDataFound ? (
-              data?.map((uni) => {
-                return (
-                  <div
-                    key={uni.name}
-                    className="job-list border-bottom"
-                    onClick={() => handleViewDetails(uni.name)}
-                    data-testid="detail-btn"
-                  >
-                    <div className="job-list-content">
-                      <div className="state">{uni.name}</div>
-                      <div className="name">{uni.country}</div>
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              <div className="error-msg">No Data Found!!!</div>
-            )}
+            <Row gutter={[16, 16]}>
+              {isLoading ? (
+                <>
+                  {[...Array(3)].map((_, index) => (
+                    <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
+                      <Skeleton active />
+                    </Col>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {!isDataFound ? (
+                    data?.map((uni) => {
+                      return (
+                        <>
+                          {/* Ant UI Grid */}
+                          <Col xs={24} sm={12} md={8} lg={8} xl={8}>
+                            <Card
+                              className="job-list"
+                              key={uni.name}
+                              title={uni.name}
+                              bordered={true}
+                              onClick={() => handleViewDetails(uni.name)}
+                              data-testid="detail-btn"
+                            >
+                              {uni.name}
+                            </Card>
+                          </Col>
+                        </>
+                      );
+                    })
+                  ) : (
+                    <div className="error-msg">No Data Found!!!</div>
+                  )}
+                </>
+              )}
+            </Row>
           </div>
         </div>
       </div>

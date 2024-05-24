@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button, Descriptions, Divider } from "antd";
 import { useNavigate } from "react-router-dom";
 import DeleteSuccessComponent from "../deleteSuccessComponent/delete";
 import "./detail.css";
@@ -9,8 +10,18 @@ const DetailComponent = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const universityName = localStorage.getItem("details");
-    setData(JSON.parse(universityName));
+    const parsedData = JSON.parse(universityName);
+    console.log("Parsed Data:", parsedData); // Debugging
+    setData(parsedData);
   }, []);
+
+  const items = [
+    { label: "Name", children: data?.name },
+    { label: "Country", children: data?.country },
+    { label: "Doamins", children: data?.domains },
+    { label: "Web Pages", children: data?.web_pages },
+    { label: "Alpha Two Code", children: data?.alpha_two_code },
+  ];
 
   //   on click delete
   const handleDelete = () => {
@@ -38,32 +49,13 @@ const DetailComponent = () => {
             className={`detail-list border-bottom ${isDelete ? "hinge" : ""}`}
           >
             <div className="detail-list-content">
-              <div className="state">
-                {data?.name}, {data?.country}{" "}
-              </div>
-              <div className="detail-listing">
-                <div className="detail-header">
-                  <div className="header-title">Doamins</div>
-                  <div className="list-name">
-                    <a href="/">{data?.domains}</a>
-                  </div>
-                  <div className="header-title">Web Pages</div>
-                  <div className="list-name">
-                    <a href="/">{data?.web_pages}</a>
-                  </div>
-                  <div className="header-title">Aplha Two Code</div>
-                  <div className="list-name">{data?.alpha_two_code}</div>
-                </div>
-              </div>
+              <Descriptions layout="vertical" bordered items={items} />
             </div>
+            <Divider />
             <div className="job-list-delete">
-              <button
-                className="btn-common btn-delete"
-                type="button"
-                onClick={handleDelete}
-              >
+              <Button onClick={handleDelete} type="primary" danger>
                 Delete
-              </button>
+              </Button>
             </div>
           </div>
         </div>

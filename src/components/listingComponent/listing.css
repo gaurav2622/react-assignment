@@ -23,18 +23,11 @@
 
 .job-list {
   cursor: pointer;
-  padding: 1.5rem 1.25rem;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
   height: 100%;
   position: relative;
-  border-bottom: 0.0625rem solid transparent;
+  border-color: #1677ff;
 }
 
 .job-list:hover {
@@ -45,11 +38,6 @@
   -webkit-transform: scale(1.01);
   transform: scale(1.01);
 }
-
-.border-bottom {
-  border-bottom-color: #21c87a;
-}
-
 .state {
   font-size: 1.5rem;
   margin-bottom: 0.3125rem;
@@ -67,9 +55,9 @@
 
 .listing-title {
   font-size: 24px;
-  border-left: 4px solid #21c87a;
+  border-left: 4px solid #1677ff;
   padding: 0.625rem;
   margin-bottom: 0.9375rem;
-  background-color: #86eabb;
-  color: #000;
+  background-color: #1677ff85;
+  color: #fff;
 }

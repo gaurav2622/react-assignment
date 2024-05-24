@@ -1,4 +1,5 @@
 import React from "react";
+import { Select } from "antd";
 import "./sort.css";
 
 const SortComponent = ({ handleSorting }) => {
@@ -10,7 +11,7 @@ const SortComponent = ({ handleSorting }) => {
             <span className="filter-title">Sort By:</span>
           </div>
           <div className="sort-dropdown">
-            <select
+            {/* <select
               data-testid="filter-wrapper"
               className="sort-select"
               onChange={handleSorting}
@@ -21,7 +22,18 @@ const SortComponent = ({ handleSorting }) => {
               <option data-testid="select-za" value="descending">
                 Z To A
               </option>
-            </select>
+            </select> */}
+
+            {/* Ant UI Select */}
+            <Select
+              data-testid="filter-wrapper"
+              defaultValue="A TO Z"
+              onChange={handleSorting}
+              options={[
+                { value: "ascending", label: "A TO Z" },
+                { value: "descending", label: "Z To A" },
+              ]}
+            />
           </div>
         </div>
       </div>

@@ -37,7 +37,7 @@
 }
 
 .border-bottom {
-  border-bottom-color: #21c87a;
+  border-bottom-color: #1677ff;
 }
 
 .state {
@@ -79,12 +79,12 @@
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
-  border: 1px solid #21c87a;
+  border: 1px solid #1677ff;
   cursor: pointer;
 }
 
 .btn-home {
-  background-color: #21c87a;
+  background-color: #1677ff;
 }
 .btn-delete {
   background-color: #dc3545;
@@ -103,7 +103,7 @@
   font-weight: 600;
   color: #000;
   text-transform: capitalize;
-  background-color: #21c87a56;
+  background-color: #1677ff56;
 }
 
 .list-name {
