@@ -126,7 +126,7 @@ const ListingComponent = () => {
             <Row gutter={[16, 16]}>
               {isLoading ? (
                 <>
-                  {[...Array(3)].map((_, index) => (
+                  {[...Array(12)].map((_, index) => (
                     <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8}>
                       <Skeleton active />
                     </Col>

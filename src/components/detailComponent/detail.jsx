@@ -11,7 +11,6 @@ const DetailComponent = () => {
   useEffect(() => {
     const universityName = localStorage.getItem("details");
     const parsedData = JSON.parse(universityName);
-    console.log("Parsed Data:", parsedData); // Debugging
     setData(parsedData);
   }, []);
 
